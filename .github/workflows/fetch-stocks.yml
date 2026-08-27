@@ -3,8 +3,8 @@ name: Download Latest Stocks
 # Controls when the action will run.
 on:
   schedule:
-    # Run at midnight UTC (3 pm PDT) Mon thru Fri (temp change to 11:30 pm UTC for testing)
-    - cron: "0 22 * * 1-5"
+    # Run at 0021 UTC (2 pm PDT) Mon thru Fri
+    - cron: "0 21 * * 1-5"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
