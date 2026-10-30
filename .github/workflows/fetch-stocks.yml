@@ -3,8 +3,8 @@ name: Download Latest Stocks
 # Controls when the action will run.
 on:
   schedule:
-    # Run at 0022 UTC (3 pm PDT) Mon thru Fri
-    - cron: "0 22 * * 1-5"
+    # Run at 20:40 UTC (1:40 pm PDT) Mon thru Fri
+    - cron: "40 20 * * 1-5"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v5
       # set the current date in environment to be used for appending to filenames in subsequent steps
       - name: current-date
-        run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       # Generate NASDAQ Data
       - name: make-nasdaq-directory
