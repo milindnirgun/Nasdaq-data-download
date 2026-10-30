@@ -23,11 +23,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v5
       # set the current date in environment to be used for appending to filenames in subsequent steps
+      #echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       - name: current-date
-        run: |
-          #echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          echo "Hello World!!" >  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
+        run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: create filenames
+        run: echo "Hello World!!" >  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
 
       - name: commit-new-files
         run: |
