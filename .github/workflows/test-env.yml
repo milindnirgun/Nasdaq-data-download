@@ -20,7 +20,7 @@ jobs:
       - name: current-date
         run: |
           echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          touch  $GITHUB_WORKSPACE/test-file.$DATE.log
+          touch  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
 
       - name: commit-new-files
         run: |
