@@ -25,8 +25,9 @@ jobs:
       # set the current date in environment to be used for appending to filenames in subsequent steps
       - name: current-date
         run: |
-          echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          touch  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
+          #echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "Hello World!!" >  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
 
       - name: commit-new-files
         run: |
