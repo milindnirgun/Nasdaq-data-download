@@ -20,4 +20,4 @@ jobs:
       - name: current-date
         run: |
           echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-          touch test-file.$GITHUB_ENV.log
+          touch test-file.$DATE.log
