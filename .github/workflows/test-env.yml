@@ -1,0 +1,22 @@
+name: Test workflow for debugging
+
+# Controls when the action will run.
+on:
+  #schedule:
+    # Run at midnight UTC (4 pm PDT) Mon thru Fri
+    #- cron: "30 22 * * 1-5"
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  test-env:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+      # set the current date in environment to be used for appending to filenames in subsequent steps
+      - name: current-date
+        run: echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: touch test-file.$GITHUB_ENV.log
