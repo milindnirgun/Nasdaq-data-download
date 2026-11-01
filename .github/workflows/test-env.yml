@@ -28,7 +28,7 @@ jobs:
         run: echo "DATE=$(TZ='America_New_York' date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: create filenames
-        run: echo "Hello World!!" >  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
+        run: echo "Hello World!! ${{ env.DATE }}" >>  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
 
       - name: commit-new-files
         run: |
