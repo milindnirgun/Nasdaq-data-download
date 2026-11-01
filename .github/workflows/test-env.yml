@@ -25,8 +25,7 @@ jobs:
       # set the current date in environment to be used for appending to filenames in subsequent steps
       #echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
       - name: current-date
-        #run: echo "TZ='America/New_York' DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-        run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "DATE=$(TZ='America_New_York' date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: create filenames
         run: echo "Hello World!!" >  $GITHUB_WORKSPACE/test-file-${{ env.DATE }}.log
