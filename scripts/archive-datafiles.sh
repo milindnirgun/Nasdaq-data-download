@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 # Get date as YYYY-MM for the prior month
 PRIOR_MONTH=$(date -d "1 month ago" +%Y-%m)
