@@ -20,16 +20,15 @@ function get_previous_busday() {
 
 get_previous_busday
 DATE=$prev_weekday
-echo "DATE=$DATE"
-read -r -n 1 -s -p "Press any key to continue..."
-echo ""
+#echo "DATE=$DATE"
+#read -r -n 1 -s -p "Press any key to continue..."
+#echo ""
 
 BASE_PATH=$(pwd)
-#DATE=$(TZ='America/New_York' date +'%Y-%m-%d')
 
-echo "$BASE_PATH/nasdaq/nasdaq_full_tickers-$DATE.json"
-read -r -n 1 -s -p "Press any key to continue..."
-echo ""
+#echo "$BASE_PATH/nasdaq/nasdaq_full_tickers-$DATE.json"
+#read -r -n 1 -s -p "Press any key to continue..."
+#echo ""
 
 curl --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:85.0) Gecko/20100101 Firefox/85.0' \
   https://api.nasdaq.com/api/screener/stocks?tableonly\=true\&limit\=25\&offset\=0\&exchange\=nasdaq\&download\=true >/tmp/nasdaq.json
