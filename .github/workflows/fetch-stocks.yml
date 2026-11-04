@@ -4,7 +4,7 @@ name: Download Latest Stocks
 on:
   schedule:
     # Run at 20:40 UTC (1:40 pm PDT) Mon thru Fri
-    - cron: "40 20 * * 1-5"
+    - cron: "0 2 * * 1-5"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -23,29 +23,9 @@ jobs:
       - name: current-date
         run: echo "DATE=$(TZ='America/New_York' date +'%Y-%m-%d')" >> $GITHUB_ENV
 
-      # Generate NASDAQ Data
-      - name: make-nasdaq-directory
-        run: mkdir -p $GITHUB_WORKSPACE/nasdaq
-      - name: get-nasdaq
-        run: "curl --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:85.0) Gecko/20100101 Firefox/85.0' https://api.nasdaq.com/api/screener/stocks\\?tableonly\\=true\\&limit\\=25\\&offset\\=0\\&exchange\\=nasdaq\\&download\\=true > /tmp/nasdaq.json"
-      - name: gen-nasdaq-stock-tickers-json
-        run: "cat /tmp/nasdaq.json | jq '.data.rows' > $GITHUB_WORKSPACE/nasdaq/nasdaq_full_tickers-${{ env.DATE }}.json"
 
-      # Generate NYSE Data
-      - name: make-nyse-directory
-        run: mkdir -p $GITHUB_WORKSPACE/nyse
-      - name: get-nyse
-        run: "curl --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:85.0) Gecko/20100101 Firefox/85.0' https://api.nasdaq.com/api/screener/stocks\\?tableonly\\=true\\&limit\\=25\\&offset\\=0\\&exchange\\=nyse\\&download\\=true > /tmp/nyse.json"
-      - name: gen-nyse-stock-tickers-json
-        run: "cat /tmp/nyse.json | jq '.data.rows' > $GITHUB_WORKSPACE/nyse/nyse_full_tickers-${{ env.DATE }}.json"
-
-      # Generate AMEX Data
-      - name: make-amex-directory
-        run: mkdir -p $GITHUB_WORKSPACE/amex
-      - name: get-amex
-        run: "curl --user-agent 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:85.0) Gecko/20100101 Firefox/85.0' https://api.nasdaq.com/api/screener/stocks\\?tableonly\\=true\\&limit\\=25\\&offset\\=0\\&exchange\\=amex\\&download\\=true > /tmp/amex.json"
-      - name: gen-amex-stock-tickers-json
-        run: "cat /tmp/amex.json | jq '.data.rows' > $GITHUB_WORKSPACE/amex/amex_full_tickers-${{ env.DATE }}.json"
+      - name: fetch-data
+        run: $GITHUB_WORKSPACE/scripts/fetch-stocks-data.sh
 
       - name: commit-new-files
         run: |
