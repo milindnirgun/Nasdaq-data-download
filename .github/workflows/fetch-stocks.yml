@@ -3,8 +3,10 @@ name: Download Latest Stocks
 # Controls when the action will run.
 on:
   schedule:
-    # Run at 14:00 UTC (6:00 am PDT) Mon thru Fri
-    - cron: "0 14 * * 1-5"
+    # Run at 6:00 am EST Mon thru Fri to fetch previous days data as that is the latest available on Nasdaq.
+    - cron: "0 6 * * 1-5"
+      timezone: 'America/New_York'
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -24,6 +26,9 @@ jobs:
         run: echo "DATE=$(TZ='America/New_York' date +'%Y-%m-%d')" >> $GITHUB_ENV
 
 
+      # This script calls the Nasdaq api to download data for Amex, Nasdaq and NYSE exchanges. As the
+      # available data until the current day's market close is from previous business day, the script
+      # will shift the date of the downloaded datafile to the previous business day.
       - name: fetch-data
         run: $GITHUB_WORKSPACE/scripts/fetch-stocks-data.sh
 
