@@ -4,7 +4,7 @@ name: Test workflow for debugging
 on:
   schedule:
     # Run at midnight UTC (4 pm PDT) Mon thru Fri
-    - cron: "55 10 * * 1-5"
+    - cron: "55 11 * * 1-5"
       timezone: 'America/New_York'
     
   # Allows you to run this workflow manually from the Actions tab
