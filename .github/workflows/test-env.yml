@@ -4,7 +4,9 @@ name: Test workflow for debugging
 on:
   #schedule:
     # Run at midnight UTC (4 pm PDT) Mon thru Fri
-    #- cron: "30 22 * * 1-5"
+    - cron: "45 10 * * 1-5"
+    timezone: 'America/New_York'
+    
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   push:
