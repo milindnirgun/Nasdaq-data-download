@@ -4,7 +4,7 @@ name: Download Latest Stocks
 on:
   schedule:
     # Run at 6:00 am EST Mon thru Fri to fetch previous days data as that is the latest available on Nasdaq.
-    - cron: "0 6 * * 1-5"
+    - cron: "24 6 * * 1-5"
       timezone: 'America/New_York'
 
   # Allows you to run this workflow manually from the Actions tab
